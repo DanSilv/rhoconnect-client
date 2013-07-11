@@ -36,6 +36,7 @@ public:
     virtual void doSyncSource( const rho::String& sourceName,  bool showStatusPopup,  const rho::String& queryParams, rho::apiGenerator::CMethodResult& oResult);
     virtual void login( const rho::String& login,  const rho::String& password, rho::apiGenerator::CMethodResult& oResult);
     virtual void logout(rho::apiGenerator::CMethodResult& oResult);
+    virtual void logout();
     virtual void stopSync(rho::apiGenerator::CMethodResult& oResult);
     virtual void setNotification( const rho::String& sourceName, rho::apiGenerator::CMethodResult& oResult);
     virtual void clearNotification( const rho::String& sourceName, rho::apiGenerator::CMethodResult& oResult);

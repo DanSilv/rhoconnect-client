@@ -104,6 +104,7 @@ public:
     void login(String name, String password, const CSyncNotification& oNotify);
     boolean isLoggedIn();
     String loadSession();
+    void logout(const CSyncNotification& oNotify);
     void logout();
     void logout_int();
 

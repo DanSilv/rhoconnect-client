@@ -99,8 +99,12 @@ public:
 		return rho_sync_login(login, password, callback);
 	}
 	
+	virtual void logout(const char* callback) {
+ 		rho_sync_logout(callback);
+	}
+
 	virtual void logout() {
-		rho_sync_logout();
+		rho_sync_logout_c();
 	}
 	
 	virtual void stop() {

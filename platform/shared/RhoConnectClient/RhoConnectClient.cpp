@@ -259,13 +259,13 @@ void rho_connectclient_database_client_reset()
 
 void rho_connectclient_database_full_reset_and_logout()
 {
-    rho_sync_logout();
+    rho_sync_logout_c();
 	rho_connectclient_database_full_reset(false);
 }
 
 void rho_connectclient_database_fullclient_reset_and_logout()
 {
-	rho_sync_logout();
+	rho_sync_logout_c();
 	rho_connectclient_database_full_reset(true);
 }
 	

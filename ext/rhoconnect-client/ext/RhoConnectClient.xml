@@ -190,7 +190,7 @@
       <RETURN type="INTEGER"/>
     </METHOD>
 
-    <METHOD name="logout">
+    <METHOD name="logout" runInThread="none" hasCallback="mandatory">
       <DESC>Logout the user from the RhoConnect server. This removes the local user session.</DESC>
     </METHOD>
 

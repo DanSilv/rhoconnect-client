@@ -186,6 +186,13 @@ void CSyncThread::processCommand(IQueueCommand* pCmd)
             m_oSyncEngine.login(oLoginCmd.m_strName, oLoginCmd.m_strPassword, *oLoginCmd.m_pNotify );
     	}
         break;
+    case scLogout:
+        {
+            CSyncLogoutCommand& oLogoutCmd = (CSyncLogoutCommand&)oSyncCmd;
+
+            checkShowStatus(oSyncCmd);
+            m_oSyncEngine.logout(*oLogoutCmd.m_pNotify);
+        }
     }
 }
 
@@ -244,6 +251,8 @@ String CSyncThread::CSyncCommand::toString()
         return "SyncOne";
     case scLogin:
         return "Login";
+    case scLogout:
+        return "Logout";
     case scSearchOne:
         return "Search";
     }
@@ -398,14 +407,24 @@ int rho_sync_logged_in()
     return CSyncThread::getSyncEngine().isLoggedIn() ? 1 : 0;
 }
 
-void rho_sync_logout()
+void rho_sync_logout( const rho::apiGenerator::CMethodResult& oResult )
 {
 	LOG(INFO) + "Logout";
 
     rho_sync_stop();
 
-	//CDBAdapter& db = CDBAdapter::getUserDB();
 	LOG(INFO) + "stopSyncByUser";
+    CSyncThread::getInstance()->addQueueCommand(new CSyncThread::CSyncLogoutCommand(new CSyncNotification(oResult, false) ) );
+}
+
+void rho_sync_logout_c()
+{
+    LOG(INFO) + "Logout";
+
+    rho_sync_stop();
+
+    //CDBAdapter& db = CDBAdapter::getUserDB();
+    LOG(INFO) + "stopSyncByUser";
     CSyncThread::getSyncEngine().logout_int();
 }
 

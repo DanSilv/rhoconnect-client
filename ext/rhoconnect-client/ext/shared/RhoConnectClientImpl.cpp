@@ -203,7 +203,12 @@ void RhoConnectClientImpl::handleSyncResult(rho::apiGenerator::CMethodResult& oR
 }
 	
 void RhoConnectClientImpl::logout(rho::apiGenerator::CMethodResult& oResult) {
-	rho_sync_logout();
+	getSyncThread()->addQueueCommand(new sync::CSyncThread::CSyncLogoutCommand(new sync::CSyncNotification(oResult, false) ) );
+	handleSyncResult(oResult);
+}
+
+void RhoConnectClientImpl::logout() {
+	rho_sync_logout_c();
 }
 	
 void RhoConnectClientImpl::stopSync(rho::apiGenerator::CMethodResult& oResult) {

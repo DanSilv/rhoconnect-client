@@ -40,7 +40,7 @@ namespace sync {
 class CSyncThread : public common::CThreadQueue
 {
 public:
-    enum ESyncCommands{ scNone = 0, scSyncAll, scSyncOne, scLogin, scSearchOne};
+    enum ESyncCommands{ scNone = 0, scSyncAll, scSyncOne, scLogin, scLogout, scSearchOne};
 
 private:
 
@@ -119,6 +119,17 @@ public:
 			m_pNotify = pNotify;
 	    }
     };
+
+    class CSyncLogoutCommand : public CSyncCommand
+    {
+    public:
+        common::CAutoPtr<CSyncNotification> m_pNotify;
+        CSyncLogoutCommand(CSyncNotification* pNotify) : 
+            CSyncCommand(CSyncThread::scLogout,"",false,"",false)
+        {
+            m_pNotify = pNotify;
+        }
+    };
 	
     class CSyncSearchCommand : public CSyncCommand
     {
@@ -181,7 +192,8 @@ unsigned long rho_sync_doSearch(unsigned long ar_sources, const char *from, cons
 
 unsigned long rho_sync_login(const char *login, const char *password, const rho::apiGenerator::CMethodResult& oResult);
 int rho_sync_logged_in();
-void rho_sync_logout();
+void rho_sync_logout(const rho::apiGenerator::CMethodResult& oResult);
+void rho_sync_logout_c();
 void rho_sync_set_notification(int source_id, const rho::apiGenerator::CMethodResult& oResult);
 void rho_sync_clear_notification(int source_id);
 int rho_sync_set_pollinterval(int nInterval);

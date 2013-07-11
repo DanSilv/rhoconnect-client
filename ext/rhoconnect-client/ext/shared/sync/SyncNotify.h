@@ -149,6 +149,7 @@ public:
     int getLastSyncObjectCount(int nSrcID);
 
     void callLoginCallback(const CSyncNotification& oNotify, int nErrCode, String strMessage);
+    void callLogoutCallback(const CSyncNotification& oNotify);
 
     boolean isReportingEnabled(){return m_bEnableReporting&&m_bEnableReportingGlobal;}
     bool isStatusPopupEnabled() const { return m_bEnableReportingGlobal; }

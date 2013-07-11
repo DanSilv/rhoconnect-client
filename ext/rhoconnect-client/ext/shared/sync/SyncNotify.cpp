@@ -707,6 +707,13 @@ void CSyncNotify::callLoginCallback(const CSyncNotification& oNotify, int nErrCo
     callNotify(oNotify,result);
 }
 
+void CSyncNotify::callLogoutCallback(const CSyncNotification& oNotify)
+{
+    Hashtable<String, String> result;
+    result.put("foo", "bar");
+    callNotify(oNotify,result);
+}
+
 }
 }
 

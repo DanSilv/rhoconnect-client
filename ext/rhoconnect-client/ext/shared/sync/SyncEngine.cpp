@@ -1149,6 +1149,13 @@ void CSyncEngine::logout_int()
     //loadAllSources();
 }
 
+void CSyncEngine::logout(const CSyncNotification& oNotify)
+{
+    stopSync();
+    logout_int();
+    getNotify().callLogoutCallback(oNotify);
+}
+
 void CSyncEngine::logout()
 {
     stopSync();

@@ -324,7 +324,7 @@ void rho_free_callbackdata(void* pData)
 
 - (void) logout
 {
-	rho_sync_logout();
+	rho_sync_logout_c();
 }
 
 + (void) setNotification: (SEL) callback target:(id)target
